@@ -9,9 +9,9 @@ namespace ProgramForFriend
         int numberOfDates;
         string[] arrayOfDates;
         string[] arrayOpred;
-        Label lShowDates;
-        Button bStart, bStop, bMeaning;
-        Timer timer;
+        Label lShowDates, lnumberOfDates, lnumberOfTermins, lMenuText1, lMenuText2;
+        Button bStart, bStop, bMeaning, bPlay, bEdit, bGoToMenu;
+        Timer timer = new Timer();
         int nowNumber;
         
         public MyForm(int numberOfDates, string[] arrayOfNumber, string[] arrayOpred)
@@ -19,15 +19,91 @@ namespace ProgramForFriend
             this.numberOfDates = numberOfDates;
             this.arrayOfDates = arrayOfNumber;
             this.arrayOpred = arrayOpred;
-            Initialize();
+            InitializeChooze();
         }
-        
-        private void Initialize()
+
+
+        private void InitializeChooze()
         {
-            this.Size = new Size(900, 500);
-            this.MaximumSize = this.MinimumSize = this.Size;
+            this.MaximumSize = this.MinimumSize = new Size(600, 400);
+            this.Size = this.MaximumSize;
             this.Text = "Russian rulette";
             
+            bPlay = new Button();
+            bPlay.Parent = this;
+            bPlay.Text = "PLAY";
+            bPlay.Size = new Size(200, 150);
+            bPlay.Font = new Font("Arial", 25, FontStyle.Bold);
+            bPlay.Top = 180;
+            bPlay.Left = 50;
+            bPlay.FlatStyle = FlatStyle.Flat;
+            bPlay.FlatAppearance.BorderColor = Color.Black;
+            bPlay.FlatAppearance.BorderSize = 1;
+            bPlay.Click += BPlay_Click;
+
+            bEdit = new Button();
+            bEdit.Parent = this;
+            bEdit.Text = "EDIT";
+            bEdit.Size = new Size(200, 150);
+            bEdit.Font = new Font("Arial", 25, FontStyle.Bold);
+            bEdit.Top = 180;
+            bEdit.Left = 300;
+            bEdit.FlatStyle = FlatStyle.Flat;
+            bEdit.FlatAppearance.BorderColor = Color.Black;
+            bEdit.FlatAppearance.BorderSize = 1;
+            bEdit.Click += BEdit_Click;
+
+            lMenuText1 = new Label();
+            lMenuText1.Parent = this;
+            lMenuText1.Font = new Font("Arial", 20, FontStyle.Bold);
+            lMenuText1.Text = "Hi! This is russian rulette with dates.";
+            lMenuText1.Size = new Size(500, 50);
+            lMenuText1.Left = (this.Width / 2) - 250;
+            lMenuText1.Top = 50;
+
+            lMenuText2 = new Label();
+            lMenuText2.Parent = this;
+            lMenuText2.Font = new Font("Arial", 20, FontStyle.Bold);
+            lMenuText2.Text = "Chooze what you want below:";
+            lMenuText2.Size = new Size(500, 200);
+            lMenuText2.Left = (this.Width / 2) - 210;
+            lMenuText2.Top = 120;
+        }
+
+        private void BEdit_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void BPlay_Click(object sender, EventArgs e)
+        {
+            lMenuText1.Size = new Size(0, 0);
+            lMenuText2.Size = new Size(0, 0);
+            bPlay.Size = new Size(0, 0);
+            bEdit.Size = new Size(0, 0);
+            InitializeGame();
+        }
+
+
+        private void InitializeGame()
+        {
+            this.MaximumSize = this.MinimumSize = new Size(900, 500);
+            this.Size = this.MaximumSize;
+
+            this.Text = "Russian rulette";
+
+            bGoToMenu = new Button();
+            bGoToMenu.Parent = this;
+            bGoToMenu.Text = "MENU";
+            bGoToMenu.Size = new Size(120, 40);
+            bGoToMenu.Font = new Font("Arial", 20, FontStyle.Bold);
+            bGoToMenu.Top = 10;
+            bGoToMenu.Left = 750;
+            bGoToMenu.FlatStyle = FlatStyle.Flat;
+            bGoToMenu.FlatAppearance.BorderColor = Color.Black;
+            bGoToMenu.FlatAppearance.BorderSize = 1;
+            bGoToMenu.Click += BGoToMenu_Click;
+
             lShowDates = new Label();
             lShowDates.Parent = this;
             lShowDates.Text = "Let's start playing Russian rulette!";
@@ -36,7 +112,7 @@ namespace ProgramForFriend
             lShowDates.Top = 150;
             lShowDates.Left = 10;
             
-            Label lnumberOfDates = new Label();
+            lnumberOfDates = new Label();
             lnumberOfDates.Parent = this;
             lnumberOfDates.Text = numberOfDates.ToString();
             lnumberOfDates.Size = new Size(50, 50);
@@ -44,7 +120,7 @@ namespace ProgramForFriend
             lnumberOfDates.Top = 21;
             lnumberOfDates.Left = 225;
             
-            Label lnumberOfTermins = new Label();
+            lnumberOfTermins = new Label();
             lnumberOfTermins.Parent = this;
             lnumberOfTermins.Text = "Dates in input file:";
             lnumberOfTermins.Size = new Size(300, 100);
@@ -88,7 +164,19 @@ namespace ProgramForFriend
             bMeaning.FlatAppearance.BorderSize = 1;
             bMeaning.Click += BMeaning_Click;
         }
-        
+
+        private void BGoToMenu_Click(object sender, EventArgs e)
+        {
+            bGoToMenu.Size = new Size(0, 0);
+            lShowDates.Size = new Size(0, 0);
+            lnumberOfDates.Size = new Size(0, 0);
+            lnumberOfTermins.Size = new Size(0, 0);
+            bStart.Size = new Size(0, 0);
+            bStop.Size = new Size(0, 0);
+            bMeaning.Size = new Size(0, 0);
+            InitializeChooze();
+        }
+
         private void BMeaning_Click(object sender, EventArgs e)
         {
             lShowDates.Text += " - " ;
@@ -110,7 +198,6 @@ namespace ProgramForFriend
         
         private void BStart_Click(object sender, EventArgs e)
         {
-            timer = new Timer();
             timer.Interval = 80;
             timer.Start();
             timer.Tick += Timer_Tick;
