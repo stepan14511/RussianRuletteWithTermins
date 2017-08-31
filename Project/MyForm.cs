@@ -7,19 +7,16 @@ namespace ProgramForFriend
 {
     class MyForm : Form
     {
-        int numberOfDates;
-        string[] arrayOfDates;
-        string[] arrayOpred;
+        int numberOfDates1, numberOfDates2, numberOfDates3, numberOfDates4, numberOfDatesAtAll, nowNumber, nowNumberArray;
+        string[] arrayOfDates1, arrayOpred1, arrayOfDates2, arrayOpred2, arrayOfDates3, arrayOpred3, arrayOfDates4, arrayOpred4;
         Label lShowDates, lnumberOfDates, lnumberOfTermins, lMenuText1, lMenuText2;
         Button bStart, bStop, bMeaning, bPlay, bEdit, bGoToMenu;
         Timer timer = new Timer();
-        int nowNumber;
         
         public MyForm()
         {
-            
-            //InitializeChooze();
-            InitializeGame();
+            InitializeChooze();
+            //InitializeGame();
         }
 
 
@@ -72,7 +69,11 @@ namespace ProgramForFriend
 
         private void BEdit_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            lMenuText1.Size = new Size(0, 0);
+            lMenuText2.Size = new Size(0, 0);
+            bPlay.Size = new Size(0, 0);
+            bEdit.Size = new Size(0, 0);
+            //InitializeEdit();
         }
 
         private void BPlay_Click(object sender, EventArgs e)
@@ -87,44 +88,14 @@ namespace ProgramForFriend
 
         private void InitializeGame()
         {
-            string path = "Dates.txt";
-            string[] readText = File.ReadAllLines(path);
-            numberOfDates = 0;
-            foreach (string s in readText)
-            {
-                numberOfDates++;
-            }
-            string[] tempNumber = new string[numberOfDates];
-            string[] tempOpred = new string[numberOfDates];
-            int j = 0;
-            foreach (var str in readText)
-            {
-                int i = 0;
-                tempNumber[j] = "";
-                while ((str[i] != ' ') && (str[i + 1] != '-'))
-                {
-                    tempNumber[j] += str[i];
-                    i++;
-                }
-                i += 3;
-                tempOpred[j] = "";
-                try
-                {
-                    while (str[i] != '\n')
-                    {
-                        tempOpred[j] += str[i];
-                        i++;
-                    }
-                }
-                catch { }
-                j++;
-            }
-            this.arrayOfDates = tempNumber;
-            this.arrayOpred = tempOpred;
+            numberOfDatesAtAll = 0;
+            GetFirstGroup();
+            GetSecondGroup();
+            GetThirdGroup();
+            GetFouthGroup();
 
             this.MaximumSize = this.MinimumSize = new Size(900, 500);
             this.Size = this.MaximumSize;
-
             this.Text = "Russian rulette";
 
             bGoToMenu = new Button();
@@ -149,7 +120,7 @@ namespace ProgramForFriend
             
             lnumberOfDates = new Label();
             lnumberOfDates.Parent = this;
-            lnumberOfDates.Text = numberOfDates.ToString();
+            lnumberOfDates.Text = (numberOfDatesAtAll).ToString();
             lnumberOfDates.Size = new Size(50, 50);
             lnumberOfDates.Font = new Font("Arial", 25, FontStyle.Bold);
             lnumberOfDates.Top = 21;
@@ -209,13 +180,29 @@ namespace ProgramForFriend
             bStart.Size = new Size(0, 0);
             bStop.Size = new Size(0, 0);
             bMeaning.Size = new Size(0, 0);
+            timer.Stop();
             InitializeChooze();
         }
 
         private void BMeaning_Click(object sender, EventArgs e)
         {
             lShowDates.Text += " - " ;
-            lShowDates.Text += arrayOpred[nowNumber];
+            if (nowNumberArray == 1)
+            {
+                lShowDates.Text += arrayOpred1[nowNumber];
+            }
+            if (nowNumberArray == 2)
+            {
+                lShowDates.Text += arrayOpred2[nowNumber];
+            }
+            if (nowNumberArray == 3)
+            {
+                lShowDates.Text += arrayOpred3[nowNumber];
+            }
+            if (nowNumberArray == 4)
+            {
+                lShowDates.Text += arrayOpred4[nowNumber];
+            }
             lShowDates.Font = new Font("Arial", 15, FontStyle.Bold);
             lShowDates.Top = 100;
             bMeaning.Size = new Size(0, 0);
@@ -224,7 +211,22 @@ namespace ProgramForFriend
         private void BStop_Click(object sender, EventArgs e)
         {
             timer.Stop();
-            lShowDates.Text = arrayOfDates[nowNumber];
+            if (nowNumberArray == 1)
+            {
+                lShowDates.Text = arrayOfDates1[nowNumber];
+            }
+            if (nowNumberArray == 2)
+            {
+                lShowDates.Text = arrayOfDates2[nowNumber];
+            }
+            if (nowNumberArray == 3)
+            {
+                lShowDates.Text = arrayOfDates3[nowNumber];
+            }
+            if (nowNumberArray == 4)
+            {
+                lShowDates.Text = arrayOfDates4[nowNumber];
+            }
             lShowDates.Font = new Font("Arial", 30, FontStyle.Bold);
             lShowDates.Top = 150;
             bStart.Size = new Size(200, 150);
@@ -243,10 +245,199 @@ namespace ProgramForFriend
         private void Timer_Tick(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            nowNumber = rnd.Next(numberOfDates);
-            lShowDates.Text = arrayOfDates[nowNumber];
+            nowNumber = rnd.Next(numberOfDatesAtAll);
+            if (nowNumber < numberOfDates1)
+            {
+                lShowDates.Text = arrayOfDates1[nowNumber];
+                nowNumberArray = 1;
+            }
+            else
+            {
+                nowNumber -= numberOfDates1;
+                if(nowNumber < numberOfDates2)
+                {
+                    lShowDates.Text = arrayOfDates2[nowNumber];
+                    nowNumberArray = 2;
+                }
+                else
+                {
+                    nowNumber -= numberOfDates2;
+                    if(nowNumber < numberOfDates3)
+                    {
+                        lShowDates.Text = arrayOfDates3[nowNumber];
+                        nowNumberArray = 3;
+                    }
+                    else
+                    {
+                        nowNumber -= numberOfDates3;
+                        lShowDates.Text = arrayOfDates4[nowNumber];
+                        nowNumberArray = 4;
+                    }
+                }
+            }
             lShowDates.Font = new Font("Arial", 30, FontStyle.Bold);
             lShowDates.Top = 150;
         }
+
+        private void GetFirstGroup()
+        {
+            string path = "Dates1.txt";
+            string[] readText = File.ReadAllLines(path);
+            numberOfDates1 = 0;
+            foreach (string s in readText)
+            {
+                numberOfDates1++;
+            }
+            string[] tempNumber = new string[numberOfDates1];
+            string[] tempOpred = new string[numberOfDates1];
+            int j = 0;
+            foreach (var str in readText)
+            {
+                int i = 0;
+                tempNumber[j] = "";
+                while ((str[i] != ' ') && (str[i + 1] != '-'))
+                {
+                    tempNumber[j] += str[i];
+                    i++;
+                }
+                i += 3;
+                tempOpred[j] = "";
+                try
+                {
+                    while (str[i] != '\n')
+                    {
+                        tempOpred[j] += str[i];
+                        i++;
+                    }
+                }
+                catch { }
+                j++;
+            }
+            this.arrayOfDates1 = tempNumber;
+            this.arrayOpred1 = tempOpred;
+            numberOfDatesAtAll += numberOfDates1;
+        }
+
+        private void GetSecondGroup()
+        {
+            string path = "Dates2.txt";
+            string[] readText = File.ReadAllLines(path);
+            numberOfDates2 = 0;
+            foreach (string s in readText)
+            {
+                numberOfDates2++;
+            }
+            string[] tempNumber = new string[numberOfDates2];
+            string[] tempOpred = new string[numberOfDates2];
+            int j = 0;
+            foreach (var str in readText)
+            {
+                int i = 0;
+                tempNumber[j] = "";
+                while ((str[i] != ' ') && (str[i + 1] != '-'))
+                {
+                    tempNumber[j] += str[i];
+                    i++;
+                }
+                i += 3;
+                tempOpred[j] = "";
+                try
+                {
+                    while (str[i] != '\n')
+                    {
+                        tempOpred[j] += str[i];
+                        i++;
+                    }
+                }
+                catch { }
+                j++;
+            }
+            this.arrayOfDates2 = tempNumber;
+            this.arrayOpred2 = tempOpred;
+            numberOfDatesAtAll += numberOfDates2;
+        }
+
+        private void GetThirdGroup()
+        {
+            string path = "Dates3.txt";
+            string[] readText = File.ReadAllLines(path);
+            numberOfDates3 = 0;
+            foreach (string s in readText)
+            {
+                numberOfDates3++;
+            }
+            string[] tempNumber = new string[numberOfDates3];
+            string[] tempOpred = new string[numberOfDates3];
+            int j = 0;
+            foreach (var str in readText)
+            {
+                int i = 0;
+                tempNumber[j] = "";
+                while ((str[i] != ' ') && (str[i + 1] != '-'))
+                {
+                    tempNumber[j] += str[i];
+                    i++;
+                }
+                i += 3;
+                tempOpred[j] = "";
+                try
+                {
+                    while (str[i] != '\n')
+                    {
+                        tempOpred[j] += str[i];
+                        i++;
+                    }
+                }
+                catch { }
+                j++;
+            }
+            this.arrayOfDates3 = tempNumber;
+            this.arrayOpred3 = tempOpred;
+            numberOfDatesAtAll += numberOfDates3;
+        }
+
+        private void GetFouthGroup()
+        {
+            string path = "Dates4.txt";
+            string[] readText = File.ReadAllLines(path);
+            numberOfDates4 = 0;
+            foreach (string s in readText)
+            {
+                numberOfDates4++;
+            }
+            string[] tempNumber = new string[numberOfDates4];
+            string[] tempOpred = new string[numberOfDates4];
+            int j = 0;
+            foreach (var str in readText)
+            {
+                int i = 0;
+                tempNumber[j] = "";
+                while ((str[i] != ' ') && (str[i + 1] != '-'))
+                {
+                    tempNumber[j] += str[i];
+                    i++;
+                }
+                i += 3;
+                tempOpred[j] = "";
+                try
+                {
+                    while (str[i] != '\n')
+                    {
+                        tempOpred[j] += str[i];
+                        i++;
+                    }
+                }
+                catch { }
+                j++;
+            }
+            this.arrayOfDates4 = tempNumber;
+            this.arrayOpred4 = tempOpred;
+            numberOfDatesAtAll += numberOfDates4;
+        }
+        
+        //private void InitializeEdit()
+        //{
+
+        //}
     }
 }
