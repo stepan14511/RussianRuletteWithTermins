@@ -19,7 +19,8 @@ namespace ProgramForFriend
             this.numberOfDates = numberOfDates;
             this.arrayOfDates = arrayOfNumber;
             this.arrayOpred = arrayOpred;
-            InitializeChooze();
+            //InitializeChooze();
+            InitializeGame();
         }
 
 
@@ -35,7 +36,7 @@ namespace ProgramForFriend
             bPlay.Size = new Size(200, 150);
             bPlay.Font = new Font("Arial", 25, FontStyle.Bold);
             bPlay.Top = 180;
-            bPlay.Left = 50;
+            bPlay.Left = 70;
             bPlay.FlatStyle = FlatStyle.Flat;
             bPlay.FlatAppearance.BorderColor = Color.Black;
             bPlay.FlatAppearance.BorderSize = 1;
@@ -47,7 +48,7 @@ namespace ProgramForFriend
             bEdit.Size = new Size(200, 150);
             bEdit.Font = new Font("Arial", 25, FontStyle.Bold);
             bEdit.Top = 180;
-            bEdit.Left = 300;
+            bEdit.Left = 320;
             bEdit.FlatStyle = FlatStyle.Flat;
             bEdit.FlatAppearance.BorderColor = Color.Black;
             bEdit.FlatAppearance.BorderSize = 1;
@@ -134,7 +135,7 @@ namespace ProgramForFriend
             bStart.Size = new Size(200, 150);
             bStart.Font = new Font("Arial", 25, FontStyle.Bold);
             bStart.Top = 250;
-            bStart.Left = 100;
+            bStart.Left = 20;
             bStart.FlatStyle = FlatStyle.Flat;
             bStart.FlatAppearance.BorderColor = Color.Black;
             bStart.FlatAppearance.BorderSize = 1;
@@ -146,7 +147,7 @@ namespace ProgramForFriend
             bStop.Size = new Size(200, 150);
             bStop.Font = new Font("Arial", 25, FontStyle.Bold);
             bStop.Top = 250;
-            bStop.Left = 350;
+            bStop.Left = 240;
             bStop.FlatStyle = FlatStyle.Flat;
             bStop.FlatAppearance.BorderColor = Color.Black;
             bStop.FlatAppearance.BorderSize = 1;
@@ -158,7 +159,7 @@ namespace ProgramForFriend
             bMeaning.Size = new Size(0, 0);
             bMeaning.Font = new Font("Arial", 25, FontStyle.Bold);
             bMeaning.Top = 250;
-            bMeaning.Left = 600;
+            bMeaning.Left = 460;
             bMeaning.FlatStyle = FlatStyle.Flat;
             bMeaning.FlatAppearance.BorderColor = Color.Black;
             bMeaning.FlatAppearance.BorderSize = 1;
