@@ -17,8 +17,8 @@ namespace ProgramForFriend
         
         public MyForm()
         {
-            InitializeChooze();
-            //InitializeGame();
+            //InitializeChooze();
+            InitializeGame();
         }
 
 
@@ -312,36 +312,46 @@ namespace ProgramForFriend
         
         private void BStop_Click(object sender, EventArgs e)
         {
-            timer.Stop();
-            if (nowNumberArray == 1)
+            if (numberOfDatesAtAll != 0)
             {
-                lShowDates.Text = arrayOfDates1[nowNumber];
+                timer.Stop();
+                if (nowNumberArray == 1)
+                {
+                    lShowDates.Text = arrayOfDates1[nowNumber];
+                }
+                if (nowNumberArray == 2)
+                {
+                    lShowDates.Text = arrayOfDates2[nowNumber];
+                }
+                if (nowNumberArray == 3)
+                {
+                    lShowDates.Text = arrayOfDates3[nowNumber];
+                }
+                if (nowNumberArray == 4)
+                {
+                    lShowDates.Text = arrayOfDates4[nowNumber];
+                }
+                lShowDates.Font = new Font("Arial", 30, FontStyle.Bold);
+                lShowDates.Top = 150;
+                bStart.Size = new Size(200, 150);
+                bMeaning.Size = new Size(200, 150);
             }
-            if (nowNumberArray == 2)
-            {
-                lShowDates.Text = arrayOfDates2[nowNumber];
-            }
-            if (nowNumberArray == 3)
-            {
-                lShowDates.Text = arrayOfDates3[nowNumber];
-            }
-            if (nowNumberArray == 4)
-            {
-                lShowDates.Text = arrayOfDates4[nowNumber];
-            }
-            lShowDates.Font = new Font("Arial", 30, FontStyle.Bold);
-            lShowDates.Top = 150;
-            bStart.Size = new Size(200, 150);
-            bMeaning.Size = new Size(200, 150);
         }
         
         private void BStart_Click(object sender, EventArgs e)
         {
-            timer.Interval = 80;
-            timer.Start();
-            timer.Tick += Timer_Tick;
-            bStart.Size = new Size(0, 0);
-            bMeaning.Size = new Size(0, 0);
+            if (numberOfDatesAtAll == 0)
+            {
+                lShowDates.Text = "Sorry, there isn't any dates(";
+            }
+            else
+            {
+                timer.Interval = 80;
+                timer.Start();
+                timer.Tick += Timer_Tick;
+                bStart.Size = new Size(0, 0);
+                bMeaning.Size = new Size(0, 0);
+            }
         }
         
         private void Timer_Tick(object sender, EventArgs e)
