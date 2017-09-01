@@ -8,9 +8,11 @@ namespace ProgramForFriend
     class MyForm : Form
     {
         int numberOfDates1, numberOfDates2, numberOfDates3, numberOfDates4, numberOfDatesAtAll, nowNumber, nowNumberArray;
+        int tempNumberOfDates1, tempNumberOfDates2, tempNumberOfDates3, tempNumberOfDates4;
         string[] arrayOfDates1, arrayOpred1, arrayOfDates2, arrayOpred2, arrayOfDates3, arrayOpred3, arrayOfDates4, arrayOpred4;
         Label lShowDates, lnumberOfDates, lnumberOfTermins, lMenuText1, lMenuText2;
         Button bStart, bStop, bMeaning, bPlay, bEdit, bGoToMenu;
+        CheckBox cbFirstGroup, cbSecondGroup, cbThirdGroup, cbFouthGroup;
         Timer timer = new Timer();
         
         public MyForm()
@@ -98,6 +100,42 @@ namespace ProgramForFriend
             this.Size = this.MaximumSize;
             this.Text = "Russian rulette";
 
+            cbFirstGroup = new CheckBox();
+            cbFirstGroup.Parent = this;
+            cbFirstGroup.Text = "1 Group";
+            cbFirstGroup.Font = new Font("Arial", 10, FontStyle.Bold);
+            cbFirstGroup.Top = 100;
+            cbFirstGroup.Left = 750;
+            cbFirstGroup.Checked = true;
+            cbFirstGroup.Click += CbFirstGroup_Click;
+
+            cbSecondGroup = new CheckBox();
+            cbSecondGroup.Parent = this;
+            cbSecondGroup.Text = "2 Group";
+            cbSecondGroup.Font = new Font("Arial", 10, FontStyle.Bold);
+            cbSecondGroup.Top = 125;
+            cbSecondGroup.Left = 750;
+            cbSecondGroup.Checked = true;
+            cbSecondGroup.Click += CbSecondGroup_Click;
+
+            cbThirdGroup = new CheckBox();
+            cbThirdGroup.Parent = this;
+            cbThirdGroup.Text = "3 Group";
+            cbThirdGroup.Font = new Font("Arial", 10, FontStyle.Bold);
+            cbThirdGroup.Top = 150;
+            cbThirdGroup.Left = 750;
+            cbThirdGroup.Checked = true;
+            cbThirdGroup.Click += CbThirdGroup_Click;
+
+            cbFouthGroup = new CheckBox();
+            cbFouthGroup.Parent = this;
+            cbFouthGroup.Text = "4 Group";
+            cbFouthGroup.Font = new Font("Arial", 10, FontStyle.Bold);
+            cbFouthGroup.Top = 175;
+            cbFouthGroup.Left = 750;
+            cbFouthGroup.Checked = true;
+            cbFouthGroup.Click += CbFouthGroup_Click;
+
             bGoToMenu = new Button();
             bGoToMenu.Parent = this;
             bGoToMenu.Text = "MENU";
@@ -169,6 +207,70 @@ namespace ProgramForFriend
             bMeaning.FlatAppearance.BorderColor = Color.Black;
             bMeaning.FlatAppearance.BorderSize = 1;
             bMeaning.Click += BMeaning_Click;
+        }
+
+        private void CbFirstGroup_Click(object sender, EventArgs e)
+        {
+            if (cbFirstGroup.Checked == false)
+            {
+                numberOfDatesAtAll -= numberOfDates1;
+                numberOfDates1 = 0;
+                lnumberOfDates.Text = (numberOfDatesAtAll).ToString();
+            }
+            else
+            {
+                numberOfDates1 = tempNumberOfDates1;
+                numberOfDatesAtAll += numberOfDates1;
+                lnumberOfDates.Text = (numberOfDatesAtAll).ToString();
+            }
+        }
+
+        private void CbSecondGroup_Click(object sender, EventArgs e)
+        {
+            if (cbSecondGroup.Checked == false)
+            {
+                numberOfDatesAtAll -= numberOfDates2;
+                numberOfDates2 = 0;
+                lnumberOfDates.Text = (numberOfDatesAtAll).ToString();
+            }
+            else
+            {
+                numberOfDates2 = tempNumberOfDates2;
+                numberOfDatesAtAll += numberOfDates2;
+                lnumberOfDates.Text = (numberOfDatesAtAll).ToString();
+            }
+        }
+
+        private void CbThirdGroup_Click(object sender, EventArgs e)
+        {
+            if (cbThirdGroup.Checked == false)
+            {
+                numberOfDatesAtAll -= numberOfDates3;
+                numberOfDates3 = 0;
+                lnumberOfDates.Text = (numberOfDatesAtAll).ToString();
+            }
+            else
+            {
+                numberOfDates3 = tempNumberOfDates3;
+                numberOfDatesAtAll += numberOfDates3;
+                lnumberOfDates.Text = (numberOfDatesAtAll).ToString();
+            }
+        }
+
+        private void CbFouthGroup_Click(object sender, EventArgs e)
+        {
+            if (cbFouthGroup.Checked == false)
+            {
+                numberOfDatesAtAll -= numberOfDates4;
+                numberOfDates4 = 0;
+                lnumberOfDates.Text = (numberOfDatesAtAll).ToString();
+            }
+            else
+            {
+                numberOfDates4 = tempNumberOfDates4;
+                numberOfDatesAtAll += numberOfDates4;
+                lnumberOfDates.Text = (numberOfDatesAtAll).ToString();
+            }
         }
 
         private void BGoToMenu_Click(object sender, EventArgs e)
@@ -316,6 +418,7 @@ namespace ProgramForFriend
             this.arrayOfDates1 = tempNumber;
             this.arrayOpred1 = tempOpred;
             numberOfDatesAtAll += numberOfDates1;
+            tempNumberOfDates1 = numberOfDates1;
         }
 
         private void GetSecondGroup()
@@ -355,6 +458,7 @@ namespace ProgramForFriend
             this.arrayOfDates2 = tempNumber;
             this.arrayOpred2 = tempOpred;
             numberOfDatesAtAll += numberOfDates2;
+            tempNumberOfDates2 = numberOfDates2;
         }
 
         private void GetThirdGroup()
@@ -394,6 +498,7 @@ namespace ProgramForFriend
             this.arrayOfDates3 = tempNumber;
             this.arrayOpred3 = tempOpred;
             numberOfDatesAtAll += numberOfDates3;
+            tempNumberOfDates3 = numberOfDates3;
         }
 
         private void GetFouthGroup()
@@ -433,6 +538,7 @@ namespace ProgramForFriend
             this.arrayOfDates4 = tempNumber;
             this.arrayOpred4 = tempOpred;
             numberOfDatesAtAll += numberOfDates4;
+            tempNumberOfDates4 = numberOfDates4;
         }
         
         //private void InitializeEdit()
