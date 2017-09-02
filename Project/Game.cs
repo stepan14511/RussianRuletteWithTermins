@@ -18,10 +18,7 @@ namespace Project
         private void InitializeGame()
         {
             numberOfDatesAtAll = 0;
-            GetFirstGroup();
-            GetSecondGroup();
-            GetThirdGroup();
-            GetFouthGroup();
+            GetDates();
 
             this.MaximumSize = this.MinimumSize = new Size(900, 500);
             this.Size = this.MaximumSize;
@@ -326,164 +323,95 @@ namespace Project
             lShowDates.Top = 150;
         }
 
-        private void GetFirstGroup()
+        private void GetDates()
         {
-            string path = "Dates1.txt";
+            string path = "Dates.txt";
             string[] readText = File.ReadAllLines(path);
             numberOfDates1 = 0;
-            foreach (string s in readText)
-            {
-                numberOfDates1++;
-            }
-            string[] tempNumber = new string[numberOfDates1];
-            string[] tempOpred = new string[numberOfDates1];
-            int j = 0;
-            foreach (var str in readText)
-            {
-                int i = 0;
-                tempNumber[j] = "";
-                while ((str[i] != ' ') && (str[i + 1] != '-'))
-                {
-                    tempNumber[j] += str[i];
-                    i++;
-                }
-                i += 3;
-                tempOpred[j] = "";
-                try
-                {
-                    while (str[i] != '\n')
-                    {
-                        tempOpred[j] += str[i];
-                        i++;
-                    }
-                }
-                catch { }
-                j++;
-            }
-            this.arrayOfDates1 = tempNumber;
-            this.arrayOpred1 = tempOpred;
-            numberOfDatesAtAll += numberOfDates1;
-            tempNumberOfDates1 = numberOfDates1;
-        }
-
-        private void GetSecondGroup()
-        {
-            string path = "Dates2.txt";
-            string[] readText = File.ReadAllLines(path);
             numberOfDates2 = 0;
-            foreach (string s in readText)
-            {
-                numberOfDates2++;
-            }
-            string[] tempNumber = new string[numberOfDates2];
-            string[] tempOpred = new string[numberOfDates2];
-            int j = 0;
-            foreach (var str in readText)
-            {
-                int i = 0;
-                tempNumber[j] = "";
-                while ((str[i] != ' ') && (str[i + 1] != '-'))
-                {
-                    tempNumber[j] += str[i];
-                    i++;
-                }
-                i += 3;
-                tempOpred[j] = "";
-                try
-                {
-                    while (str[i] != '\n')
-                    {
-                        tempOpred[j] += str[i];
-                        i++;
-                    }
-                }
-                catch { }
-                j++;
-            }
-            this.arrayOfDates2 = tempNumber;
-            this.arrayOpred2 = tempOpred;
-            numberOfDatesAtAll += numberOfDates2;
-            tempNumberOfDates2 = numberOfDates2;
-        }
-
-        private void GetThirdGroup()
-        {
-            string path = "Dates3.txt";
-            string[] readText = File.ReadAllLines(path);
             numberOfDates3 = 0;
-            foreach (string s in readText)
-            {
-                numberOfDates3++;
-            }
-            string[] tempNumber = new string[numberOfDates3];
-            string[] tempOpred = new string[numberOfDates3];
-            int j = 0;
-            foreach (var str in readText)
-            {
-                int i = 0;
-                tempNumber[j] = "";
-                while ((str[i] != ' ') && (str[i + 1] != '-'))
-                {
-                    tempNumber[j] += str[i];
-                    i++;
-                }
-                i += 3;
-                tempOpred[j] = "";
-                try
-                {
-                    while (str[i] != '\n')
-                    {
-                        tempOpred[j] += str[i];
-                        i++;
-                    }
-                }
-                catch { }
-                j++;
-            }
-            this.arrayOfDates3 = tempNumber;
-            this.arrayOpred3 = tempOpred;
-            numberOfDatesAtAll += numberOfDates3;
-            tempNumberOfDates3 = numberOfDates3;
-        }
-
-        private void GetFouthGroup()
-        {
-            string path = "Dates4.txt";
-            string[] readText = File.ReadAllLines(path);
             numberOfDates4 = 0;
+            numberOfDatesAtAll = 0;
+            arrayOfDates1 = new string[readText.Length];
+            arrayOpred1 = new string[readText.Length];
+            arrayOfDates2 = new string[readText.Length];
+            arrayOpred2 = new string[readText.Length];
+            arrayOfDates3 = new string[readText.Length];
+            arrayOpred3 = new string[readText.Length];
+            arrayOfDates4 = new string[readText.Length];
+            arrayOpred4 = new string[readText.Length];
+            int temp1 = 0, temp2 = 0, temp3 = 0, temp4 = 0;
             foreach (string s in readText)
             {
-                numberOfDates4++;
-            }
-            string[] tempNumber = new string[numberOfDates4];
-            string[] tempOpred = new string[numberOfDates4];
-            int j = 0;
-            foreach (var str in readText)
-            {
-                int i = 0;
-                tempNumber[j] = "";
-                while ((str[i] != ' ') && (str[i + 1] != '-'))
+                if((s[1] == '0') || (s[1] == '9'))
                 {
-                    tempNumber[j] += str[i];
-                    i++;
+                    numberOfDates1++;
+                    arrayOfDates1[temp1] = s.Substring(0, 4);
+                    arrayOpred1[temp1] = s.Substring(7);
+                    temp1++;
                 }
-                i += 3;
-                tempOpred[j] = "";
-                try
+                else
                 {
-                    while (str[i] != '\n')
+                    if ((s[1] == '7') || (s[1] == '8'))
                     {
-                        tempOpred[j] += str[i];
-                        i++;
+                        numberOfDates2++;
+                        arrayOfDates2[temp2] = s.Substring(0, 4);
+                        arrayOpred2[temp2] = s.Substring(7);
+                        temp2++;
+                    }
+                    else
+                    {
+                        if ((s[1] == '5') || (s[1] == '6'))
+                        {
+                            numberOfDates3++;
+                            arrayOfDates3[temp3] = s.Substring(0, 4);
+                            arrayOpred3[temp3] = s.Substring(7);
+                            temp3++;
+                        }
+                        else
+                        {
+                            numberOfDates4++;
+                            arrayOfDates4[temp4] = s.Substring(0, 4);
+                            arrayOpred4[temp4] = s.Substring(7);
+                            temp4++;
+                        }
                     }
                 }
-                catch { }
-                j++;
             }
-            this.arrayOfDates4 = tempNumber;
-            this.arrayOpred4 = tempOpred;
-            numberOfDatesAtAll += numberOfDates4;
+            numberOfDatesAtAll = numberOfDates1 + numberOfDates2 + numberOfDates3 + numberOfDates4;
+            tempNumberOfDates1 = numberOfDates1;
+            tempNumberOfDates2 = numberOfDates2;
+            tempNumberOfDates3 = numberOfDates3;
             tempNumberOfDates4 = numberOfDates4;
+            //string[] tempNumber = new string[numberOfDates1];
+            //string[] tempOpred = new string[numberOfDates1];
+            //int j = 0;
+            //foreach (var str in readText)
+            //{
+            //    int i = 0;
+            //    tempNumber[j] = "";
+            //    while ((str[i] != ' ') && (str[i + 1] != '-'))
+            //    {
+            //        tempNumber[j] += str[i];
+            //        i++;
+            //    }
+            //    i += 3;
+            //    tempOpred[j] = "";
+            //    try
+            //    {
+            //        while (str[i] != '\n')
+            //        {
+            //            tempOpred[j] += str[i];
+            //            i++;
+            //        }
+            //    }
+            //    catch { }
+            //    j++;
+            //}
+            //this.arrayOfDates1 = tempNumber;
+            //this.arrayOpred1 = tempOpred;
+            //numberOfDatesAtAll += numberOfDates1;
+            //tempNumberOfDates1 = numberOfDates1;
         }
     }
 }
