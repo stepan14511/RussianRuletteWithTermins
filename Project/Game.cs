@@ -3,87 +3,10 @@ using System.IO;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace ProgramForFriend
+namespace Project
 {
-    class MyForm : Form
+    partial class MyForm
     {
-        Label lMenuText1, lMenuText2;
-        Button bPlay, bEdit;
-        
-        public MyForm()
-        {
-            //InitializeChooze();
-            InitializeGame();
-            //InitializeEdit();
-        }
-
-
-        private void InitializeChooze()
-        {
-            this.MaximumSize = this.MinimumSize = new Size(600, 400);
-            this.Size = this.MaximumSize;
-            this.Text = "Russian rulette";
-            
-            bPlay = new Button();
-            bPlay.Parent = this;
-            bPlay.Text = "PLAY";
-            bPlay.Size = new Size(200, 150);
-            bPlay.Font = new Font("Arial", 25, FontStyle.Bold);
-            bPlay.Top = 180;
-            bPlay.Left = 70;
-            bPlay.FlatStyle = FlatStyle.Flat;
-            bPlay.FlatAppearance.BorderColor = Color.Black;
-            bPlay.FlatAppearance.BorderSize = 1;
-            bPlay.Click += BPlay_Click;
-
-            bEdit = new Button();
-            bEdit.Parent = this;
-            bEdit.Text = "EDIT";
-            bEdit.Size = new Size(200, 150);
-            bEdit.Font = new Font("Arial", 25, FontStyle.Bold);
-            bEdit.Top = 180;
-            bEdit.Left = 320;
-            bEdit.FlatStyle = FlatStyle.Flat;
-            bEdit.FlatAppearance.BorderColor = Color.Black;
-            bEdit.FlatAppearance.BorderSize = 1;
-            bEdit.Click += BEdit_Click;
-
-            lMenuText1 = new Label();
-            lMenuText1.Parent = this;
-            lMenuText1.Font = new Font("Arial", 20, FontStyle.Bold);
-            lMenuText1.Text = "Hi! This is russian rulette with dates.";
-            lMenuText1.Size = new Size(500, 50);
-            lMenuText1.Left = (this.Width / 2) - 250;
-            lMenuText1.Top = 50;
-
-            lMenuText2 = new Label();
-            lMenuText2.Parent = this;
-            lMenuText2.Font = new Font("Arial", 20, FontStyle.Bold);
-            lMenuText2.Text = "Chooze what you want below:";
-            lMenuText2.Size = new Size(500, 200);
-            lMenuText2.Left = (this.Width / 2) - 210;
-            lMenuText2.Top = 120;
-        }
-
-        private void BEdit_Click(object sender, EventArgs e)
-        {
-            lMenuText1.Size = new Size(0, 0);
-            lMenuText2.Size = new Size(0, 0);
-            bPlay.Size = new Size(0, 0);
-            bEdit.Size = new Size(0, 0);
-            InitializeEdit();
-        }
-
-        private void BPlay_Click(object sender, EventArgs e)
-        {
-            lMenuText1.Size = new Size(0, 0);
-            lMenuText2.Size = new Size(0, 0);
-            bPlay.Size = new Size(0, 0);
-            bEdit.Size = new Size(0, 0);
-            InitializeGame();
-        }
-
-
         int numberOfDates1, numberOfDates2, numberOfDates3, numberOfDates4, numberOfDatesAtAll, nowNumber, nowNumberArray;
         int tempNumberOfDates1, tempNumberOfDates2, tempNumberOfDates3, tempNumberOfDates4;
         string[] arrayOfDates1, arrayOpred1, arrayOfDates2, arrayOpred2, arrayOfDates3, arrayOpred3, arrayOfDates4, arrayOpred4;
@@ -163,7 +86,7 @@ namespace ProgramForFriend
             lShowDates.Font = new Font("Arial", 30, FontStyle.Bold);
             lShowDates.Top = 150;
             lShowDates.Left = 10;
-            
+
             lnumberOfDates = new Label();
             lnumberOfDates.Parent = this;
             lnumberOfDates.Text = (numberOfDatesAtAll).ToString();
@@ -171,7 +94,7 @@ namespace ProgramForFriend
             lnumberOfDates.Font = new Font("Arial", 25, FontStyle.Bold);
             lnumberOfDates.Top = 21;
             lnumberOfDates.Left = 180;
-            
+
             lnumberOfTermins = new Label();
             lnumberOfTermins.Parent = this;
             lnumberOfTermins.Text = "Dates in data:";
@@ -179,7 +102,7 @@ namespace ProgramForFriend
             lnumberOfTermins.Font = new Font("Arial", 17, FontStyle.Bold);
             lnumberOfTermins.Top = 30;
             lnumberOfTermins.Left = 15;
-            
+
             bStart = new Button();
             bStart.Parent = this;
             bStart.Text = "START";
@@ -191,7 +114,7 @@ namespace ProgramForFriend
             bStart.FlatAppearance.BorderColor = Color.Black;
             bStart.FlatAppearance.BorderSize = 1;
             bStart.Click += BStart_Click;
-            
+
             bStop = new Button();
             bStop.Parent = this;
             bStop.Text = "STOP";
@@ -203,7 +126,7 @@ namespace ProgramForFriend
             bStop.FlatAppearance.BorderColor = Color.Black;
             bStop.FlatAppearance.BorderSize = 1;
             bStop.Click += BStop_Click;
-            
+
             bMeaning = new Button();
             bMeaning.Parent = this;
             bMeaning.Text = "MEANING";
@@ -300,7 +223,7 @@ namespace ProgramForFriend
 
         private void BMeaning_Click(object sender, EventArgs e)
         {
-            lShowDates.Text += " - " ;
+            lShowDates.Text += " - ";
             if (nowNumberArray == 1)
             {
                 lShowDates.Text += arrayOpred1[nowNumber];
@@ -321,7 +244,7 @@ namespace ProgramForFriend
             lShowDates.Top = 100;
             bMeaning.Size = new Size(0, 0);
         }
-        
+
         private void BStop_Click(object sender, EventArgs e)
         {
             if (numberOfDatesAtAll != 0)
@@ -349,7 +272,7 @@ namespace ProgramForFriend
                 bMeaning.Size = new Size(200, 150);
             }
         }
-        
+
         private void BStart_Click(object sender, EventArgs e)
         {
             if (numberOfDatesAtAll == 0)
@@ -365,7 +288,7 @@ namespace ProgramForFriend
                 bMeaning.Size = new Size(0, 0);
             }
         }
-        
+
         private void Timer_Tick(object sender, EventArgs e)
         {
             Random rnd = new Random();
@@ -378,7 +301,7 @@ namespace ProgramForFriend
             else
             {
                 nowNumber -= numberOfDates1;
-                if(nowNumber < numberOfDates2)
+                if (nowNumber < numberOfDates2)
                 {
                     lShowDates.Text = arrayOfDates2[nowNumber];
                     nowNumberArray = 2;
@@ -386,7 +309,7 @@ namespace ProgramForFriend
                 else
                 {
                     nowNumber -= numberOfDates2;
-                    if(nowNumber < numberOfDates3)
+                    if (nowNumber < numberOfDates3)
                     {
                         lShowDates.Text = arrayOfDates3[nowNumber];
                         nowNumberArray = 3;
@@ -561,210 +484,6 @@ namespace ProgramForFriend
             this.arrayOpred4 = tempOpred;
             numberOfDatesAtAll += numberOfDates4;
             tempNumberOfDates4 = numberOfDates4;
-        }
-
-
-        Button beGoToMenu, beAdd;
-        Label lAddNewDate, lMinus;
-        TextBox tbNewDate, tbNewMeaning;
-        RadioButton rbAdd1, rbAdd2, rbAdd3, rbAdd4;
-
-        private void InitializeEdit()
-        {
-            this.MaximumSize = this.MinimumSize = new Size(800, 500);
-            this.Size = this.MinimumSize;
-
-            beAdd = new Button();
-            beAdd.Parent = this;
-            beAdd.Text = "Add";
-            beAdd.Size = new Size(60, 25);
-            beAdd.Font = new Font("Arial", 10, FontStyle.Bold);
-            beAdd.Top = 200;
-            beAdd.Left = 20;
-            //beAdd.FlatStyle = FlatStyle.Flat;
-            //beAdd.FlatAppearance.BorderColor = Color.Black;
-            //beAdd.FlatAppearance.BorderSize = 1;
-            beAdd.Click += BeAdd_Click;
-
-            rbAdd1 = new RadioButton();
-            rbAdd1.Parent = this;
-            rbAdd1.Text = "1 Group";
-            rbAdd1.Left = 20;
-            rbAdd1.Top = 110;
-
-            rbAdd2 = new RadioButton();
-            rbAdd2.Parent = this;
-            rbAdd2.Text = "2 Group";
-            rbAdd2.Left = 20;
-            rbAdd2.Top = 130;
-
-            rbAdd3 = new RadioButton();
-            rbAdd3.Parent = this;
-            rbAdd3.Text = "3 Group";
-            rbAdd3.Left = 20;
-            rbAdd3.Top = 150;
-
-            rbAdd4 = new RadioButton();
-            rbAdd4.Parent = this;
-            rbAdd4.Text = "4 Group";
-            rbAdd4.Left = 20;
-            rbAdd4.Top = 170;
-
-            tbNewMeaning = new TextBox();
-            tbNewMeaning.Parent = this;
-            tbNewMeaning.Width = 550;
-            tbNewMeaning.Height = 0;
-            tbNewMeaning.Top = 80;
-            tbNewMeaning.Left = 150;
-
-            lMinus = new Label();
-            lMinus.Parent = this;
-            lMinus.Text = "-";
-            lMinus.Size = new Size(700, 100);
-            lMinus.Font = new Font("Arial", 20, FontStyle.Bold);
-            lMinus.Top = 70;
-            lMinus.Left = 125;
-
-            tbNewDate = new TextBox();
-            tbNewDate.Parent = this;
-            tbNewDate.Width = 100;
-            tbNewDate.Height = 0;
-            tbNewDate.Top = 80;
-            tbNewDate.Left = 20;
-
-            beGoToMenu = new Button();
-            beGoToMenu.Parent = this;
-            beGoToMenu.Text = "MENU";
-            beGoToMenu.Size = new Size(120, 40);
-            beGoToMenu.Font = new Font("Arial", 20, FontStyle.Bold);
-            beGoToMenu.Top = 10;
-            beGoToMenu.Left = 650;
-            beGoToMenu.FlatStyle = FlatStyle.Flat;
-            beGoToMenu.FlatAppearance.BorderColor = Color.Black;
-            beGoToMenu.FlatAppearance.BorderSize = 1;
-            beGoToMenu.Click += BeGoToMenu_Click;
-
-            lAddNewDate = new Label();
-            lAddNewDate.Parent = this;
-            lAddNewDate.Text = "Add new date:";
-            lAddNewDate.Size = new Size(700, 100);
-            lAddNewDate.Font = new Font("Arial", 20, FontStyle.Bold);
-            lAddNewDate.Top = 30;
-            lAddNewDate.Left = 20;
-        }
-
-        private void BeAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                while (tbNewDate.Text[tbNewDate.Text.Length - 1] == ' ')
-                {
-                    tbNewDate.Text = tbNewDate.Text.Remove(tbNewDate.Text.Length - 1);
-                }
-                while (tbNewMeaning.Text[0] == ' ')
-                {
-                    tbNewMeaning.Text = tbNewMeaning.Text.Substring(1);
-                }
-            }
-            catch { }
-            if (tbNewDate.Text == "")
-            {
-                MessageBox.Show("Write please date!");
-            }
-            else
-            {
-                if(tbNewMeaning.Text == "")
-                {
-                    MessageBox.Show("Write please meaning!");
-                }
-                else
-                {
-                    if (rbAdd1.Checked == true)
-                    {
-                        MessageBox.Show(AddDateToFile(1, tbNewDate.Text, tbNewMeaning.Text) ? "Date added succesfuly" : "Error!!! Please restart program and try again.");
-                        tbNewDate.Text = "";
-                        tbNewMeaning.Text = "";
-                    }
-                    else
-                    {
-                        if (rbAdd2.Checked == true)
-                        {
-                            MessageBox.Show(AddDateToFile(2, tbNewDate.Text, tbNewMeaning.Text) ? "Date added succesfuly" : "Error!!! Please restart program and try again.");
-                            tbNewDate.Text = "";
-                            tbNewMeaning.Text = "";
-                        }
-                        else
-                        {
-                            if (rbAdd3.Checked == true)
-                            {
-                                MessageBox.Show(AddDateToFile(3, tbNewDate.Text, tbNewMeaning.Text) ? "Date added succesfuly" : "Error!!! Please restart program and try again.");
-                                tbNewDate.Text = "";
-                                tbNewMeaning.Text = "";
-                            }
-                            else
-                            {
-                                if (rbAdd4.Checked == true)
-                                {
-                                    MessageBox.Show(AddDateToFile(4, tbNewDate.Text, tbNewMeaning.Text) ? "Date added succesfuly" : "Error!!! Please restart program and try again.");
-                                    tbNewDate.Text = "";
-                                    tbNewMeaning.Text = "";
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Chooze group please!");
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        private bool AddDateToFile(int numberOfFile, string date, string meaning)
-        {
-            string line = date + " - " + meaning;
-            try
-            {
-                if(numberOfFile == 1)
-                {
-                    File.AppendAllText(@"Dates1.txt", line + Environment.NewLine);
-                }
-                else
-                {
-                    if (numberOfFile == 2)
-                    {
-                        File.AppendAllText(@"Dates2.txt", line + Environment.NewLine);
-                    }
-                    else
-                    {
-                        if (numberOfFile == 3)
-                        {
-                            File.AppendAllText(@"Dates3.txt", line + Environment.NewLine);
-                        }
-                        else
-                        {
-                            File.AppendAllText(@"Dates4.txt", line + Environment.NewLine);
-                        }
-                    }
-                }
-            }
-            catch { return false;}
-            return true;
-        }
-
-        private void BeGoToMenu_Click(object sender, EventArgs e)
-        {
-            beGoToMenu.Size = new Size(0, 0);
-            lAddNewDate.Size = new Size(0, 0);
-            rbAdd1.Size = new Size(0, 0);
-            rbAdd2.Size = new Size(0, 0);
-            rbAdd3.Size = new Size(0, 0);
-            rbAdd4.Size = new Size(0, 0);
-            beAdd.Size = new Size(0, 0);
-            lMinus.Size = new Size(0, 0);
-            tbNewDate.Size = new Size(0, 0);
-            tbNewMeaning.Size = new Size(0, 0);
-            InitializeChooze();
         }
     }
 }
