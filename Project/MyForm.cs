@@ -13,8 +13,8 @@ namespace ProgramForFriend
         public MyForm()
         {
             //InitializeChooze();
-            //InitializeGame();
-            InitializeEdit();
+            InitializeGame();
+            //InitializeEdit();
         }
 
 
@@ -106,37 +106,41 @@ namespace ProgramForFriend
 
             cbFirstGroup = new CheckBox();
             cbFirstGroup.Parent = this;
-            cbFirstGroup.Text = "1 Group";
+            cbFirstGroup.Text = "20-21 centuries";
             cbFirstGroup.Font = new Font("Arial", 10, FontStyle.Bold);
             cbFirstGroup.Top = 100;
             cbFirstGroup.Left = 750;
+            cbFirstGroup.Width = 130;
             cbFirstGroup.Checked = true;
             cbFirstGroup.Click += CbFirstGroup_Click;
 
             cbSecondGroup = new CheckBox();
             cbSecondGroup.Parent = this;
-            cbSecondGroup.Text = "2 Group";
+            cbSecondGroup.Text = "18-19 centuries";
             cbSecondGroup.Font = new Font("Arial", 10, FontStyle.Bold);
             cbSecondGroup.Top = 125;
             cbSecondGroup.Left = 750;
+            cbSecondGroup.Width = 130;
             cbSecondGroup.Checked = true;
             cbSecondGroup.Click += CbSecondGroup_Click;
 
             cbThirdGroup = new CheckBox();
             cbThirdGroup.Parent = this;
-            cbThirdGroup.Text = "3 Group";
+            cbThirdGroup.Text = "16-17 centuries";
             cbThirdGroup.Font = new Font("Arial", 10, FontStyle.Bold);
             cbThirdGroup.Top = 150;
             cbThirdGroup.Left = 750;
+            cbThirdGroup.Width = 130;
             cbThirdGroup.Checked = true;
             cbThirdGroup.Click += CbThirdGroup_Click;
 
             cbFouthGroup = new CheckBox();
             cbFouthGroup.Parent = this;
-            cbFouthGroup.Text = "4 Group";
+            cbFouthGroup.Text = "14-15 centuries";
             cbFouthGroup.Font = new Font("Arial", 10, FontStyle.Bold);
             cbFouthGroup.Top = 175;
             cbFouthGroup.Left = 750;
+            cbFouthGroup.Width = 130;
             cbFouthGroup.Checked = true;
             cbFouthGroup.Click += CbFouthGroup_Click;
 
@@ -166,11 +170,11 @@ namespace ProgramForFriend
             lnumberOfDates.Size = new Size(50, 50);
             lnumberOfDates.Font = new Font("Arial", 25, FontStyle.Bold);
             lnumberOfDates.Top = 21;
-            lnumberOfDates.Left = 225;
+            lnumberOfDates.Left = 180;
             
             lnumberOfTermins = new Label();
             lnumberOfTermins.Parent = this;
-            lnumberOfTermins.Text = "Dates in input file:";
+            lnumberOfTermins.Text = "Dates in data:";
             lnumberOfTermins.Size = new Size(300, 100);
             lnumberOfTermins.Font = new Font("Arial", 17, FontStyle.Bold);
             lnumberOfTermins.Top = 30;
