@@ -7,14 +7,46 @@ namespace Project
 {
     partial class MyForm
     {
-        Button beGoToMenu, beAdd;
-        Label lAddNewDate, lMinus;
+        Button beGoToMenu, beAdd, beDelete;
+        Label lAddNewDate, lMinus, lDeleteDate;
         TextBox tbNewDate, tbNewMeaning;
+        ListBox lbDates;
 
         private void InitializeEdit()
         {
             this.MaximumSize = this.MinimumSize = new Size(800, 500);
             this.Size = this.MinimumSize;
+
+            beDelete = new Button();
+            beDelete.Parent = this;
+            beDelete.Text = "Delete";
+            beDelete.Size = new Size(70, 25);
+            beDelete.Font = new Font("Arial", 10, FontStyle.Bold);
+            beDelete.Top = 415;
+            beDelete.Left = 20;
+            beDelete.FlatStyle = FlatStyle.Flat;
+            beDelete.FlatAppearance.BorderColor = Color.Black;
+            beDelete.FlatAppearance.BorderSize = 1;
+            beDelete.Click += BeDelete_Click;
+
+            lbDates = new ListBox();
+            lbDates.Parent = this;
+            lbDates.Size = new Size(200, 200);
+            lbDates.Top = 200;
+            lbDates.Left = 20;
+            string path = "Dates.txt";
+            string[] readText = File.ReadAllLines(path);
+            foreach (var s in readText) {
+                lbDates.Items.Add(s.Substring(0, 4));
+            }
+
+            lDeleteDate = new Label();
+            lDeleteDate.Parent = this;
+            lDeleteDate.Text = "Delete date:";
+            lDeleteDate.Size = new Size(700, 100);
+            lDeleteDate.Font = new Font("Arial", 20, FontStyle.Bold);
+            lDeleteDate.Top = 160;
+            lDeleteDate.Left = 15;
 
             beAdd = new Button();
             beAdd.Parent = this;
@@ -68,7 +100,23 @@ namespace Project
             lAddNewDate.Size = new Size(700, 100);
             lAddNewDate.Font = new Font("Arial", 20, FontStyle.Bold);
             lAddNewDate.Top = 30;
-            lAddNewDate.Left = 20;
+            lAddNewDate.Left = 15;
+        }
+
+        private void BeDelete_Click(object sender, EventArgs e)
+        {
+            //string deletedDate = (string)lbDates.SelectedItem;
+            //string path = "Dates.txt";
+            //string[] readText = File.ReadAllLines(path);
+            //foreach (var s in readText)
+            //{
+            //    if (s.Substring(0, 4) == deletedDate)
+            //    {
+            //        continue;
+            //    }
+            //}
+            DeleteAllFromEdit();
+            InitializeEdit();
         }
 
         private void BeAdd_Click(object sender, EventArgs e)
@@ -114,6 +162,8 @@ namespace Project
                             {
                                 File.AppendAllText(@"Dates.txt", line + Environment.NewLine);
                                 MessageBox.Show("Date was successful added!");
+                                DeleteAllFromEdit();
+                                InitializeEdit();
                             }
                             catch (Exception ex)
                             {
@@ -132,16 +182,24 @@ namespace Project
                 }
             }
         }
-        
+
         private void BeGoToMenu_Click(object sender, EventArgs e)
+        {
+            DeleteAllFromEdit();
+            InitializeChooze();
+        }
+
+        private void DeleteAllFromEdit()
         {
             beGoToMenu.Size = new Size(0, 0);
             lAddNewDate.Size = new Size(0, 0);
             beAdd.Size = new Size(0, 0);
             lMinus.Size = new Size(0, 0);
             tbNewDate.Size = new Size(0, 0);
+            lbDates.Size = new Size(0, 0);
             tbNewMeaning.Size = new Size(0, 0);
-            InitializeChooze();
+            beDelete.Size = new Size(0, 0);
+            lDeleteDate.Size = new Size(0, 0);
         }
     }
 }
