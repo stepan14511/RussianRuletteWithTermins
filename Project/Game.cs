@@ -203,17 +203,7 @@ namespace Project
 
         private void BGoToMenu_Click(object sender, EventArgs e)
         {
-            bGoToMenu.Size = new Size(0, 0);
-            lShowDates.Size = new Size(0, 0);
-            lnumberOfDates.Size = new Size(0, 0);
-            lnumberOfTermins.Size = new Size(0, 0);
-            bStart.Size = new Size(0, 0);
-            bStop.Size = new Size(0, 0);
-            bMeaning.Size = new Size(0, 0);
-            cbFirstGroup.Size = new Size(0, 0);
-            cbSecondGroup.Size = new Size(0, 0);
-            cbThirdGroup.Size = new Size(0, 0);
-            cbFouthGroup.Size = new Size(0, 0);
+            DeleteAllFromGame();
             timer.Stop();
             InitializeChooze();
         }
@@ -412,6 +402,21 @@ namespace Project
             //this.arrayOpred1 = tempOpred;
             //numberOfDatesAtAll += numberOfDates1;
             //tempNumberOfDates1 = numberOfDates1;
+        }
+
+        private void DeleteAllFromGame()
+        {
+            bGoToMenu.Size = new Size(0, 0);
+            lShowDates.Size = new Size(0, 0);
+            lnumberOfDates.Size = new Size(0, 0);
+            lnumberOfTermins.Size = new Size(0, 0);
+            bStart.Size = new Size(0, 0);
+            bStop.Size = new Size(0, 0);
+            bMeaning.Size = new Size(0, 0);
+            cbFirstGroup.Size = new Size(0, 0);
+            cbSecondGroup.Size = new Size(0, 0);
+            cbThirdGroup.Size = new Size(0, 0);
+            cbFouthGroup.Size = new Size(0, 0);
         }
     }
 }

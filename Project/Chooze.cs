@@ -65,20 +65,22 @@ namespace Project
 
         private void BEdit_Click(object sender, EventArgs e)
         {
-            lMenuText1.Size = new Size(0, 0);
-            lMenuText2.Size = new Size(0, 0);
-            bPlay.Size = new Size(0, 0);
-            bEdit.Size = new Size(0, 0);
+            DeleteAllFromChooze();
             InitializeEdit();
         }
 
         private void BPlay_Click(object sender, EventArgs e)
         {
+            DeleteAllFromChooze();
+            InitializeGame();
+        }
+
+        private void DeleteAllFromChooze()
+        {
             lMenuText1.Size = new Size(0, 0);
             lMenuText2.Size = new Size(0, 0);
             bPlay.Size = new Size(0, 0);
             bEdit.Size = new Size(0, 0);
-            InitializeGame();
         }
     }
 }
