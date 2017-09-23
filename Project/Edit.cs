@@ -105,18 +105,39 @@ namespace Project
 
         private void BeDelete_Click(object sender, EventArgs e)
         {
-            //string deletedDate = (string)lbDates.SelectedItem;
-            //string path = "Dates.txt";
-            //string[] readText = File.ReadAllLines(path);
-            //foreach (var s in readText)
-            //{
-            //    if (s.Substring(0, 4) == deletedDate)
-            //    {
-            //        continue;
-            //    }
-            //}
+            string deletedDate = (string)lbDates.SelectedItem;
+            string path = "Dates.txt";
+            string pathTemp = "TempDates.txt";
+            string[] readText = File.ReadAllLines(path);
+            using (File.Create(pathTemp)) { }
+            using (StreamReader reader = new StreamReader(path))
+            {
+                using (StreamWriter writer = new StreamWriter(pathTemp))
+                {
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        if (line.Substring(0, 4) == deletedDate)
+                            continue;
+                        writer.WriteLine(line);
+                    }
+                }
+            }
+            File.Delete(path);
+            using (File.Create(path)) { }
+            using (StreamReader reader = new StreamReader(pathTemp))
+            {
+                using (StreamWriter writer = new StreamWriter(path))
+                {
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
+                        writer.WriteLine(line);
+                }
+            }
+            File.Delete(pathTemp);
             DeleteAllFromEdit();
             InitializeEdit();
+            MessageBox.Show("The date was successfuly deleted!");
         }
 
         private void BeAdd_Click(object sender, EventArgs e)
