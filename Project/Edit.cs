@@ -36,6 +36,8 @@ namespace Project
             lbDates.Left = 20;
             string path = "Dates.txt";
             string[] readText = File.ReadAllLines(path);
+            Array.Sort(readText);
+            Array.Reverse(readText);
             foreach (var s in readText) {
                 lbDates.Items.Add(s.Substring(0, 4));
             }
