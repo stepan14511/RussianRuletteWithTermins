@@ -18,8 +18,10 @@ namespace Project
 
         private void InitializeChooze()
         {
-            this.MaximumSize = this.MinimumSize = new Size(600, 400);
-            this.Size = this.MaximumSize;
+            //this.MaximumSize = this.MinimumSize = new Size(600, 400);
+            //this.Size = this.MaximumSize;
+            this.MinimumSize = new Size(600, 400);
+            this.Size = this.MinimumSize;
             this.Text = "Russian rulette";
 
             bPlay = new Button();
@@ -27,8 +29,8 @@ namespace Project
             bPlay.Text = "PLAY";
             bPlay.Size = new Size(200, 150);
             bPlay.Font = new Font("Arial", 25, FontStyle.Bold);
-            bPlay.Top = 180;
-            bPlay.Left = 70;
+            bPlay.Top = (this.Height / 2) - 30;
+            bPlay.Left = (this.Width / 2) - 230;
             bPlay.FlatStyle = FlatStyle.Flat;
             bPlay.FlatAppearance.BorderColor = Color.Black;
             bPlay.FlatAppearance.BorderSize = 1;
@@ -39,8 +41,8 @@ namespace Project
             bEdit.Text = "EDIT";
             bEdit.Size = new Size(200, 150);
             bEdit.Font = new Font("Arial", 25, FontStyle.Bold);
-            bEdit.Top = 180;
-            bEdit.Left = 320;
+            bEdit.Top = (this.Height / 2) - 30;
+            bEdit.Left = (this.Width / 2) + 20;
             bEdit.FlatStyle = FlatStyle.Flat;
             bEdit.FlatAppearance.BorderColor = Color.Black;
             bEdit.FlatAppearance.BorderSize = 1;
@@ -52,7 +54,7 @@ namespace Project
             lMenuText1.Text = "Hi! This is russian rulette with dates.";
             lMenuText1.Size = new Size(500, 50);
             lMenuText1.Left = (this.Width / 2) - 250;
-            lMenuText1.Top = 50;
+            lMenuText1.Top = (this.Height / 2) - 170;
 
             lMenuText2 = new Label();
             lMenuText2.Parent = this;
@@ -60,7 +62,21 @@ namespace Project
             lMenuText2.Text = "Chooze what you want below:";
             lMenuText2.Size = new Size(500, 200);
             lMenuText2.Left = (this.Width / 2) - 210;
-            lMenuText2.Top = 120;
+            lMenuText2.Top = (this.Height / 2) - 110;
+            
+            Resize += MyForm_Resize;
+        }
+
+        private void MyForm_Resize(object sender, EventArgs e)
+        {
+            bPlay.Top = (this.Height / 2) - 20;
+            bPlay.Left = (this.Width / 2) - 230;
+            bEdit.Top = (this.Height / 2) - 20;
+            bEdit.Left = (this.Width / 2) + 20;
+            lMenuText1.Left = (this.Width / 2) - 250;
+            lMenuText1.Top = (this.Height / 2) - 150;
+            lMenuText2.Left = (this.Width / 2) - 210;
+            lMenuText2.Top = (this.Height / 2) - 90;
         }
 
         private void BEdit_Click(object sender, EventArgs e)

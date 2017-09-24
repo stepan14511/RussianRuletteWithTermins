@@ -14,7 +14,7 @@ namespace Project
 
         private void InitializeEdit()
         {
-            this.MaximumSize = this.MinimumSize = new Size(800, 500);
+            this.MinimumSize = new Size(800, 500);
             this.Size = this.MinimumSize;
 
             beDelete = new Button();
