@@ -99,7 +99,10 @@ namespace Project
 
             lbDates.Top = 200;
             lbDates.Left = 20;
-            lbDates.Size = new Size(200, this.Height - 300);
+            if (lbDates.Width != 0)
+            {
+                lbDates.Size = new Size(200, this.Height - 300);
+            }
 
             lDeleteDate.Top = 160;
             lDeleteDate.Left = 15;
@@ -109,7 +112,10 @@ namespace Project
 
             tbNewMeaning.Top = 80;
             tbNewMeaning.Left = 150;
-            tbNewMeaning.Size = new Size(this.Width - 240, 0);
+            if (tbNewMeaning.Width != 0)
+            {
+                tbNewMeaning.Size = new Size(this.Width - 240, 0);
+            }
 
             lMinus.Top = 70;
             lMinus.Left = 125;
@@ -118,7 +124,10 @@ namespace Project
             tbNewDate.Left = 20;
 
             beGoToMenu.Top = 10;
-            beGoToMenu.Left = this.Width - 150;
+            if(beGoToMenu.Width != 0)
+            {
+                beGoToMenu.Left = this.Width - 150;
+            }
 
             lAddNewDate.Top = 30;
             lAddNewDate.Left = 15;
