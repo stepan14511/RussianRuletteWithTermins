@@ -27,7 +27,7 @@ namespace Project
             
             cbFirstGroup = new CheckBox();
             cbFirstGroup.Parent = this;
-            cbFirstGroup.Text = "20-21 centuries";
+            cbFirstGroup.Text = "20-21 века";
             cbFirstGroup.Font = new Font("Arial", 10, FontStyle.Bold);
             cbFirstGroup.Width = 130;
             cbFirstGroup.Checked = true;
@@ -35,7 +35,7 @@ namespace Project
             
             cbSecondGroup = new CheckBox();
             cbSecondGroup.Parent = this;
-            cbSecondGroup.Text = "18-19 centuries";
+            cbSecondGroup.Text = "18-19 века";
             cbSecondGroup.Font = new Font("Arial", 10, FontStyle.Bold);
             cbSecondGroup.Width = 130;
             cbSecondGroup.Checked = true;
@@ -43,7 +43,7 @@ namespace Project
             
             cbThirdGroup = new CheckBox();
             cbThirdGroup.Parent = this;
-            cbThirdGroup.Text = "16-17 centuries";
+            cbThirdGroup.Text = "16-17 века";
             cbThirdGroup.Font = new Font("Arial", 10, FontStyle.Bold);
             cbThirdGroup.Width = 130;
             cbThirdGroup.Checked = true;
@@ -51,7 +51,7 @@ namespace Project
             
             cbFouthGroup = new CheckBox();
             cbFouthGroup.Parent = this;
-            cbFouthGroup.Text = "14-15 centuries";
+            cbFouthGroup.Text = "14-15 века";
             cbFouthGroup.Font = new Font("Arial", 10, FontStyle.Bold);
             cbFouthGroup.Width = 130;
             cbFouthGroup.Checked = true;
@@ -59,7 +59,7 @@ namespace Project
             
             bGoToMenu = new Button();
             bGoToMenu.Parent = this;
-            bGoToMenu.Text = "MENU";
+            bGoToMenu.Text = "МЕНЮ";
             bGoToMenu.Size = new Size(120, 40);
             bGoToMenu.Font = new Font("Arial", 20, FontStyle.Bold);
             bGoToMenu.FlatStyle = FlatStyle.Flat;
@@ -69,7 +69,7 @@ namespace Project
             
             lShowDates = new Label();
             lShowDates.Parent = this;
-            lShowDates.Text = "Let's start playing Russian rulette!";
+            lShowDates.Text = "Чтобы начать нажмите на СТАРТ";
             lShowDates.Size = new Size(700, 100);
             lShowDates.Font = new Font("Arial", 30, FontStyle.Bold);
 
@@ -81,13 +81,13 @@ namespace Project
 
             lnumberOfTermins = new Label();
             lnumberOfTermins.Parent = this;
-            lnumberOfTermins.Text = "Dates in data:";
+            lnumberOfTermins.Text = "Выбрано дат:";
             lnumberOfTermins.Size = new Size(300, 100);
             lnumberOfTermins.Font = new Font("Arial", 17, FontStyle.Bold);
 
             bStart = new Button();
             bStart.Parent = this;
-            bStart.Text = "START";
+            bStart.Text = "СТАРТ";
             bStart.Size = new Size(200, 150);
             bStart.Font = new Font("Arial", 25, FontStyle.Bold);
             bStart.FlatStyle = FlatStyle.Flat;
@@ -97,7 +97,7 @@ namespace Project
 
             bStop = new Button();
             bStop.Parent = this;
-            bStop.Text = "STOP";
+            bStop.Text = "СТОП";
             bStop.Size = new Size(200, 150);
             bStop.Font = new Font("Arial", 25, FontStyle.Bold);
             bStop.FlatStyle = FlatStyle.Flat;
@@ -107,7 +107,7 @@ namespace Project
 
             bMeaning = new Button();
             bMeaning.Parent = this;
-            bMeaning.Text = "MEANING";
+            bMeaning.Text = "СОБЫТИЕ";
             bMeaning.Size = new Size(0, 0);
             bMeaning.Font = new Font("Arial", 25, FontStyle.Bold);
             bMeaning.FlatStyle = FlatStyle.Flat;
@@ -116,27 +116,27 @@ namespace Project
             bMeaning.Click += BMeaning_Click;
 
             Resize += MyForm_Resize1;
-            ReplaceAllBlocks();
+            ReplaceAllBlocksGame();
         }
 
         private void MyForm_Resize1(object sender, EventArgs e)
         {
-            ReplaceAllBlocks();
+            ReplaceAllBlocksGame();
         }
 
-        private void ReplaceAllBlocks()
+        private void ReplaceAllBlocksGame()
         {
             cbFirstGroup.Left = this.Width - 150;
-            cbFirstGroup.Top = 100;
+            cbFirstGroup.Top = 90;
 
             cbSecondGroup.Left = this.Width - 150;
-            cbSecondGroup.Top = 125;
+            cbSecondGroup.Top = 115;
 
             cbThirdGroup.Left = this.Width - 150;
-            cbThirdGroup.Top = 150;
+            cbThirdGroup.Top = 140;
 
             cbFouthGroup.Left = this.Width - 150;
-            cbFouthGroup.Top = 175;
+            cbFouthGroup.Top = 165;
 
             bGoToMenu.Left = this.Width - 150;
             bGoToMenu.Top = 10;
@@ -266,7 +266,7 @@ namespace Project
             lShowDates.Font = new Font("Arial", 15, FontStyle.Bold);
             bMeaning.Size = new Size(0, 0);
             WasBMeaningClickedLast = true;
-            ReplaceAllBlocks();
+            ReplaceAllBlocksGame();
         }
 
         private void BStop_Click(object sender, EventArgs e)
@@ -294,14 +294,14 @@ namespace Project
                 bStart.Size = new Size(200, 150);
                 bMeaning.Size = new Size(200, 150);
                 WasBMeaningClickedLast = false;
-                ReplaceAllBlocks();
+                ReplaceAllBlocksGame();
             }
         }
 
         private void BStart_Click(object sender, EventArgs e)
         {
             WasBMeaningClickedLast = false;
-            ReplaceAllBlocks();
+            ReplaceAllBlocksGame();
             if (numberOfDatesAtAll == 0)
             {
                 lShowDates.Text = "Sorry, there isn't any dates(";
@@ -351,7 +351,7 @@ namespace Project
                 }
             }
             lShowDates.Font = new Font("Arial", 30, FontStyle.Bold);
-            ReplaceAllBlocks();
+            ReplaceAllBlocksGame();
         }
 
         private void GetDates()

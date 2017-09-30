@@ -19,11 +19,9 @@ namespace Project
 
             beDelete = new Button();
             beDelete.Parent = this;
-            beDelete.Text = "Delete";
-            beDelete.Size = new Size(70, 25);
+            beDelete.Text = "Удалить";
+            beDelete.Size = new Size(85, 25);
             beDelete.Font = new Font("Arial", 10, FontStyle.Bold);
-            beDelete.Top = 415;
-            beDelete.Left = 20;
             beDelete.FlatStyle = FlatStyle.Flat;
             beDelete.FlatAppearance.BorderColor = Color.Black;
             beDelete.FlatAppearance.BorderSize = 1;
@@ -31,9 +29,6 @@ namespace Project
 
             lbDates = new ListBox();
             lbDates.Parent = this;
-            lbDates.Size = new Size(200, 200);
-            lbDates.Top = 200;
-            lbDates.Left = 20;
             string path = "Dates.txt";
             string[] readText = File.ReadAllLines(path);
             Array.Sort(readText);
@@ -44,19 +39,15 @@ namespace Project
 
             lDeleteDate = new Label();
             lDeleteDate.Parent = this;
-            lDeleteDate.Text = "Delete date:";
+            lDeleteDate.Text = "Удалить дату:";
             lDeleteDate.Size = new Size(700, 100);
             lDeleteDate.Font = new Font("Arial", 20, FontStyle.Bold);
-            lDeleteDate.Top = 160;
-            lDeleteDate.Left = 15;
 
             beAdd = new Button();
             beAdd.Parent = this;
-            beAdd.Text = "Add";
-            beAdd.Size = new Size(60, 25);
+            beAdd.Text = "Добавить";
+            beAdd.Size = new Size(85, 25);
             beAdd.Font = new Font("Arial", 10, FontStyle.Bold);
-            beAdd.Top = 120;
-            beAdd.Left = 20;
             beAdd.FlatStyle = FlatStyle.Flat;
             beAdd.FlatAppearance.BorderColor = Color.Black;
             beAdd.FlatAppearance.BorderSize = 1;
@@ -64,33 +55,23 @@ namespace Project
 
             tbNewMeaning = new TextBox();
             tbNewMeaning.Parent = this;
-            tbNewMeaning.Width = 550;
-            tbNewMeaning.Height = 0;
-            tbNewMeaning.Top = 80;
-            tbNewMeaning.Left = 150;
 
             lMinus = new Label();
             lMinus.Parent = this;
             lMinus.Text = "-";
             lMinus.Size = new Size(700, 100);
             lMinus.Font = new Font("Arial", 20, FontStyle.Bold);
-            lMinus.Top = 70;
-            lMinus.Left = 125;
 
             tbNewDate = new TextBox();
             tbNewDate.Parent = this;
             tbNewDate.Width = 100;
             tbNewDate.Height = 0;
-            tbNewDate.Top = 80;
-            tbNewDate.Left = 20;
 
             beGoToMenu = new Button();
             beGoToMenu.Parent = this;
-            beGoToMenu.Text = "MENU";
+            beGoToMenu.Text = "МЕНЮ";
             beGoToMenu.Size = new Size(120, 40);
             beGoToMenu.Font = new Font("Arial", 20, FontStyle.Bold);
-            beGoToMenu.Top = 10;
-            beGoToMenu.Left = 650;
             beGoToMenu.FlatStyle = FlatStyle.Flat;
             beGoToMenu.FlatAppearance.BorderColor = Color.Black;
             beGoToMenu.FlatAppearance.BorderSize = 1;
@@ -98,9 +79,47 @@ namespace Project
 
             lAddNewDate = new Label();
             lAddNewDate.Parent = this;
-            lAddNewDate.Text = "Add new date:";
+            lAddNewDate.Text = "Добавить новую дату:";
             lAddNewDate.Size = new Size(700, 100);
             lAddNewDate.Font = new Font("Arial", 20, FontStyle.Bold);
+
+            Resize += MyForm_Resize2;
+            ReplaceAllBlocksEdit();
+        }
+
+        private void MyForm_Resize2(object sender, EventArgs e)
+        {
+            ReplaceAllBlocksEdit();
+        }
+
+        private void ReplaceAllBlocksEdit()
+        {
+            beDelete.Top = this.Height - 80;
+            beDelete.Left = 20;
+
+            lbDates.Top = 200;
+            lbDates.Left = 20;
+            lbDates.Size = new Size(200, this.Height - 300);
+
+            lDeleteDate.Top = 160;
+            lDeleteDate.Left = 15;
+             
+            beAdd.Top = 120;
+            beAdd.Left = 20;
+
+            tbNewMeaning.Top = 80;
+            tbNewMeaning.Left = 150;
+            tbNewMeaning.Size = new Size(this.Width - 240, 0);
+
+            lMinus.Top = 70;
+            lMinus.Left = 125;
+
+            tbNewDate.Top = 80;
+            tbNewDate.Left = 20;
+
+            beGoToMenu.Top = 10;
+            beGoToMenu.Left = this.Width - 150;
+
             lAddNewDate.Top = 30;
             lAddNewDate.Left = 15;
         }
@@ -108,38 +127,40 @@ namespace Project
         private void BeDelete_Click(object sender, EventArgs e)
         {
             string deletedDate = (string)lbDates.SelectedItem;
-            string path = "Dates.txt";
-            string pathTemp = "TempDates.txt";
-            string[] readText = File.ReadAllLines(path);
-            using (File.Create(pathTemp)) { }
-            using (StreamReader reader = new StreamReader(path))
+            if(deletedDate != null)
             {
-                using (StreamWriter writer = new StreamWriter(pathTemp))
+                string path = "Dates.txt";
+                string pathTemp = "TempDates.txt";
+                string[] readText = File.ReadAllLines(path);
+                using (File.Create(pathTemp)) { }
+                using (StreamReader reader = new StreamReader(path))
                 {
-                    string line;
-                    while ((line = reader.ReadLine()) != null)
+                    using (StreamWriter writer = new StreamWriter(pathTemp))
                     {
-                        if (line.Substring(0, 4) == deletedDate)
-                            continue;
-                        writer.WriteLine(line);
+                        string line;
+                        while ((line = reader.ReadLine()) != null)
+                        {
+                            if (line.Substring(0, 4) == deletedDate)
+                                continue;
+                            writer.WriteLine(line);
+                        }
                     }
                 }
-            }
-            File.Delete(path);
-            using (File.Create(path)) { }
-            using (StreamReader reader = new StreamReader(pathTemp))
-            {
-                using (StreamWriter writer = new StreamWriter(path))
+                File.Delete(path);
+                using (File.Create(path)) { }
+                using (StreamReader reader = new StreamReader(pathTemp))
                 {
-                    string line;
-                    while ((line = reader.ReadLine()) != null)
-                        writer.WriteLine(line);
+                    using (StreamWriter writer = new StreamWriter(path))
+                    {
+                        string line;
+                        while ((line = reader.ReadLine()) != null)
+                            writer.WriteLine(line);
+                    }
                 }
+                File.Delete(pathTemp);
+                DeleteAllFromEdit();
+                InitializeEdit();
             }
-            File.Delete(pathTemp);
-            DeleteAllFromEdit();
-            InitializeEdit();
-            MessageBox.Show("The date was successfuly deleted!");
         }
 
         private void BeAdd_Click(object sender, EventArgs e)
@@ -166,7 +187,7 @@ namespace Project
             catch { }
             if (tbNewDate.Text == "")
             {
-                MessageBox.Show("You forgot to write date!");
+                MessageBox.Show("Введите пожалуйста дату!");
             }
             else
             {
